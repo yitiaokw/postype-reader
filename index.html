@@ -8,6 +8,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
   <meta name="apple-mobile-web-app-title" content="Postype" />
   <meta name="theme-color" content="#FAF8F5" id="meta-theme-color" />
+  <meta name="referrer" content="no-referrer" />
   <link rel="manifest" href="./manifest.json" />
   <link rel="apple-touch-icon" href="./icon-192.png" />
   <style>
@@ -324,6 +325,200 @@
 
     .book-card:active { transform: scale(0.992); }
 
+    /* Series Folder Card (Inside Group-by-Author View) */
+    .series-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    .series-head {
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      cursor: pointer;
+    }
+
+    .series-head:active {
+      background: color-mix(in srgb, var(--surface-soft) 55%, transparent);
+    }
+
+    .series-head-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .series-title-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+      flex: 1;
+    }
+
+    .series-icon {
+      flex-shrink: 0;
+      color: var(--warm);
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .series-title {
+      font-size: 16px;
+      font-weight: 680;
+      line-height: 1.38;
+      word-break: break-word;
+    }
+
+    .series-head-right {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      flex-shrink: 0;
+    }
+
+    .series-count-pill {
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: var(--note-bg);
+      color: var(--warm);
+      font-size: 11.5px;
+      font-weight: 600;
+    }
+
+    .series-chevron {
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      transition: transform 0.18s ease;
+    }
+
+    .series-card.expanded .series-chevron {
+      transform: rotate(90deg);
+    }
+
+    .series-children {
+      display: none;
+      border-top: 1px solid var(--border);
+      background: color-mix(in srgb, var(--bg) 55%, var(--surface));
+    }
+
+    .series-card.expanded .series-children {
+      display: block;
+    }
+
+    .series-child-row {
+      padding: 12px 16px 12px 22px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .series-child-row::before {
+      content: "";
+      position: absolute;
+      left: 12px;
+      top: 14px;
+      bottom: 14px;
+      width: 2px;
+      border-radius: 99px;
+      background: var(--border-strong);
+    }
+
+    .series-child-row:last-child {
+      border-bottom: none;
+    }
+
+    .series-child-row:active {
+      background: var(--surface-soft);
+    }
+
+    .series-child-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .series-child-title {
+      font-size: 14.5px;
+      font-weight: 600;
+      line-height: 1.42;
+      word-break: break-word;
+    }
+
+    .series-child-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--text-sub);
+    }
+
+    .series-child-badges {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .series-chip {
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--surface-soft);
+      color: var(--text-sub);
+      font-size: 12px;
+      border: 1px solid var(--border);
+    }
+
+    .series-chip:active {
+      background: var(--note-bg);
+      color: var(--warm);
+    }
+
+    .pick-list {
+      max-height: 220px;
+      overflow-y: auto;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--bg);
+      margin-bottom: 12px;
+    }
+
+    .pick-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border);
+      font-size: 13.5px;
+      cursor: pointer;
+    }
+
+    .pick-row:last-child { border-bottom: none; }
+
+    .pick-row input[type="checkbox"] {
+      width: 17px;
+      height: 17px;
+      accent-color: var(--warm);
+      flex-shrink: 0;
+    }
+
     .book-card-top {
       display: flex;
       align-items: flex-start;
@@ -566,6 +761,36 @@
       border-radius: 10px;
       display: block;
       margin: 0 auto;
+    }
+
+    .img-fallback {
+      padding: 18px 14px;
+      border-radius: 12px;
+      border: 1px dashed var(--border-strong);
+      background: var(--surface-soft);
+      color: var(--text-sub);
+      font-size: 13px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .img-fallback-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .img-mini-btn {
+      padding: 6px 12px;
+      border-radius: 8px;
+      background: var(--surface);
+      border: 1px solid var(--border-strong);
+      color: var(--text);
+      font-size: 12.5px;
+      font-weight: 500;
     }
 
     .para-hr {
@@ -1212,6 +1437,7 @@
 
   <!-- ==================== 通用弹窗容器 ==================== -->
   <div id="modal-root" class="hidden"></div>
+  <input type="file" id="replace-img-input" accept="image/*" class="hidden" />
   <div id="toast" class="toast hidden"></div>
 
   <script>
@@ -1277,10 +1503,12 @@
           theme: 'light',
           fontSize: 17,
           lineHeight: 1.85,
-          showRawTranslation: false
+          showRawTranslation: false,
+          groupByAuthor: false
         },
         shelfFilter: 'all',
         groupByAuthor: false,
+        expandedSeries: new Set(),
         searchQuery: '',
         excerptsSearch: '',
         prevViewBeforeExcerpts: 'shelf',
@@ -1346,9 +1574,11 @@
       function getAuthorSearchBlob(article) {
         const key = normalizeAuthorKey(article);
         const meta = state.authors[key];
+        const explicitSeries = (article.series && article.series !== '__NONE__') ? article.series : '';
         return [
           article.title,
           article.titleKo,
+          explicitSeries,
           isUnknownName(article.author) ? '' : article.author,
           isUnknownName(article.authorZh) ? '' : article.authorZh,
           isUnknownName(article.authorKo) ? '' : article.authorKo,
@@ -1356,6 +1586,175 @@
           meta?.alias,
           ...(meta?.names || []).filter((n) => !isUnknownName(n))
         ].filter(Boolean).join(' ').toLowerCase();
+      }
+
+      /* ================= 3.5 系列智能识别与章节自然排序 ================= */
+      function parseZhNum(str) {
+        if (!str) return NaN;
+        if (/^\d+$/.test(str)) return parseInt(str, 10);
+        const map = { '零': 0, '〇': 0, '一': 1, '二': 2, '两': 2, '三': 3, '四': 4, '五': 5, '六': 6, '七': 7, '八': 8, '九': 9 };
+        let total = 0;
+        let cur = 0;
+        for (const ch of str) {
+          if (ch === '十') {
+            total += (cur || 1) * 10;
+            cur = 0;
+          } else if (ch === '百') {
+            total += (cur || 1) * 100;
+            cur = 0;
+          } else if (ch in map) {
+            cur = map[ch];
+          } else {
+            return NaN;
+          }
+        }
+        return total + cur;
+      }
+
+      function inferSeriesFromTitle(rawTitle) {
+        const t = (rawTitle || '').trim();
+        if (!t) return null;
+
+        const cleanBase = (s) => s.replace(/[\s\-_·•~—–/|：:]+$/g, '').trim();
+        let m;
+
+        /* 1. 番外 / 外传 / 后记（可带编号，如 圣诞老人 番外1、圣诞老人（番外）） */
+        m = t.match(/^(.+?)\s*[\(\[（【]?\s*(?:番外|外传|外傳|后记|後記|extra|bonus|side)\s*([0-9一二三四五六七八九十两]{0,3})\s*[\)\]）】]?$/i);
+        if (m) {
+          const base = cleanBase(m[1]);
+          if (base.length >= 1) {
+            const sub = m[2] ? parseZhNum(m[2]) : 0;
+            return { base, order: 10000 + (Number.isNaN(sub) ? 0 : sub) };
+          }
+        }
+
+        /* 2. 序章 / 楔子 / 完结 */
+        m = t.match(/^(.+?)\s*[\(\[（【]?\s*(序章|序幕|楔子|prologue|序)\s*[\)\]）】]?$/i);
+        if (m) {
+          const base = cleanBase(m[1]);
+          if (base.length >= 1) return { base, order: -1 };
+        }
+        m = t.match(/^(.+?)\s*[\(\[（【]?\s*(完结|完結|终章|終章|完|终|end)\s*[\)\]）】]?$/i);
+        if (m) {
+          const base = cleanBase(m[1]);
+          if (base.length >= 1) return { base, order: 9999 };
+        }
+
+        /* 3. 上 / 中 / 下（带空格或括号，避免误切正文词尾） */
+        m = t.match(/^(.+?)(?:\s*[\(\[（【]\s*([上中下])\s*[\)\]）】]|\s+([上中下]))$/);
+        if (m) {
+          const base = cleanBase(m[1]);
+          const part = m[2] || m[3];
+          if (base.length >= 1) {
+            const ord = part === '上' ? 1 : part === '中' ? 2 : 3;
+            return { base, order: ord };
+          }
+        }
+
+        /* 4. 第X话 / 第X章 / 第X篇 / 第X集 / X话 / X화 / X편 */
+        m = t.match(/^(.+?)\s*[\(\[（【]?\s*第?\s*([0-9]{1,3}|[一二三四五六七八九十百两]{1,4})\s*(?:话|話|章|篇|集|回|部|节|節|화|편)\s*[\)\]）】]?$/i);
+        if (m) {
+          const base = cleanBase(m[1]);
+          const num = parseZhNum(m[2]);
+          if (base.length >= 1 && !Number.isNaN(num)) return { base, order: num };
+        }
+
+        /* 5. EP.1 / Part 2 / Ch.3 / Vol.4 / No.5 / #6 */
+        m = t.match(/^(.+?)\s*[\(\[（【]?\s*(?:ep\.?|part|ch\.?|chapter|vol\.?|no\.?|#)\s*(\d{1,3})\s*[\)\]）】]?$/i);
+        if (m) {
+          const base = cleanBase(m[1]);
+          if (base.length >= 1) return { base, order: parseInt(m[2], 10) };
+        }
+
+        /* 6. 括号编号：圣诞老人(1)、圣诞老人（02）、圣诞老人[3] */
+        m = t.match(/^(.+?)\s*[\(\[（【]\s*(\d{1,3})\s*[\)\]）】]$/);
+        if (m) {
+          const base = cleanBase(m[1]);
+          if (base.length >= 1) return { base, order: parseInt(m[2], 10) };
+        }
+
+        /* 7. 末尾纯 1~3 位数字：圣诞老人01、圣诞老人 02、圣诞老人-3（避开 4 位年份如 2026） */
+        m = t.match(/^(.*?[^\d\s\-_·•.])[\s\-_·•.]*(\d{1,3})$/);
+        if (m) {
+          const base = cleanBase(m[1]);
+          if (base.length >= 1 && !/\d$/.test(base)) {
+            return { base, order: parseInt(m[2], 10) };
+          }
+        }
+
+        return null;
+      }
+
+      function computeAuthorSeriesMap(allAuthorArticles) {
+        const inferredById = new Map();
+        const baseCounts = new Map();
+
+        const bump = (name) => {
+          if (!name) return;
+          baseCounts.set(name, (baseCounts.get(name) || 0) + 1);
+        };
+
+        for (const a of allAuthorArticles) {
+          if (a.series === '__NONE__') continue;
+          const explicit = (a.series || '').trim();
+          if (explicit) {
+            bump(explicit);
+            continue;
+          }
+          const inf = inferSeriesFromTitle(a.title || a.titleKo);
+          if (inf) {
+            inferredById.set(a.id, inf);
+            bump(inf.base);
+          }
+        }
+
+        /* 若存在无编号首篇（如“圣诞老人”）和带编号续篇（如“圣诞老人02”），一并计入同名系列 */
+        for (const a of allAuthorArticles) {
+          if (a.series === '__NONE__' || (a.series || '').trim() || inferredById.has(a.id)) continue;
+          const t = (a.title || a.titleKo || '').trim();
+          if (t && baseCounts.has(t)) bump(t);
+        }
+
+        const result = new Map();
+        for (const a of allAuthorArticles) {
+          if (a.series === '__NONE__') {
+            result.set(a.id, null);
+            continue;
+          }
+          const explicit = (a.series || '').trim();
+          const t = (a.title || a.titleKo || '').trim();
+          const inf = inferredById.get(a.id) || inferSeriesFromTitle(t);
+          if (explicit) {
+            const ord = inf ? inf.order : 5000;
+            result.set(a.id, { name: explicit, auto: false, order: ord });
+          } else if (inf && (baseCounts.get(inf.base) || 0) >= 2) {
+            result.set(a.id, { name: inf.base, auto: true, order: inf.order });
+          } else if (t && (baseCounts.get(t) || 0) >= 2) {
+            result.set(a.id, { name: t, auto: true, order: 0 });
+          } else {
+            result.set(a.id, null);
+          }
+        }
+        return result;
+      }
+
+      function getAllSeriesNamesForAuthor(authorKey) {
+        const allAuthArts = state.articles.filter((a) => normalizeAuthorKey(a) === authorKey);
+        const map = computeAuthorSeriesMap(allAuthArts);
+        const names = new Set();
+        for (const info of map.values()) {
+          if (info && info.name) names.add(info.name);
+        }
+        return Array.from(names);
+      }
+
+      function sortSeriesChapters(articles, seriesMap) {
+        return articles.slice().sort((a, b) => {
+          const oa = seriesMap.get(a.id)?.order ?? 5000;
+          const ob = seriesMap.get(b.id)?.order ?? 5000;
+          if (oa !== ob) return oa - ob;
+          return (a.title || a.titleKo || '').localeCompare(b.title || b.titleKo || '', 'zh-CN', { numeric: true });
+        });
       }
 
       async function saveAuthorAlias(authorKey, alias, defaultNames = []) {
@@ -1509,15 +1908,108 @@
         if (!state.groupByAuthor) {
           container.innerHTML = items.map((a) => renderCard(a, false)).join('');
         } else {
+          const renderSeriesChild = (a) => {
+            const hasZh = a.blocks.some((b) => b.zh);
+            const hasKo = a.blocks.some((b) => b.ko);
+            const hasImg = a.blocks.some((b) => b.type === 'img');
+            const pct = a.isRead ? 100 : Math.round((a.maxProgress || 0) * 100);
+            const progText = a.isRead ? '已读' : (pct > 0 ? pct + '%' : '未读');
+            const hlCount = state.highlights.filter((h) => h.articleId === a.id).length;
+            return `
+              <div class="series-child-row" data-open-id="${esc(a.id)}">
+                <div class="series-child-top">
+                  <div class="series-child-title">${esc(a.title || a.titleKo || '未命名文章')}</div>
+                  <button class="card-more" data-menu-id="${esc(a.id)}" aria-label="更多操作">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>
+                  </button>
+                </div>
+                <div class="series-child-meta">
+                  <div class="series-child-badges">
+                    ${hasZh && hasKo ? '<span class="badge badge-bi">中/韩双语</span>' : hasKo ? '<span class="badge">仅韩文</span>' : '<span class="badge">仅中文</span>'}
+                    ${hasImg ? '<span class="badge">含插图</span>' : ''}
+                    ${hlCount ? `<span class="badge">${hlCount} 句摘录</span>` : ''}
+                  </div>
+                  <span style="font-size:11.5px;color:var(--text-muted);flex-shrink:0;">${progText}</span>
+                </div>
+              </div>
+            `;
+          };
+
           const groups = new Map();
           for (const a of items) {
             const k = normalizeAuthorKey(a);
             if (!groups.has(k)) groups.set(k, []);
             groups.get(k).push(a);
           }
+
           let html = '';
           for (const [aKey, list] of groups.entries()) {
             const disp = getAuthorDisplay(list[0]);
+            const allAuthArticles = state.articles.filter((a) => normalizeAuthorKey(a) === aKey);
+            const seriesMap = computeAuthorSeriesMap(allAuthArticles);
+
+            const seriesBuckets = new Map();
+            const entries = [];
+            for (const a of list) {
+              const info = seriesMap.get(a.id);
+              if (info && info.name) {
+                if (!seriesBuckets.has(info.name)) {
+                  const bucket = { type: 'series', name: info.name, articles: [], latestTime: 0 };
+                  seriesBuckets.set(info.name, bucket);
+                  entries.push(bucket);
+                }
+                const b = seriesBuckets.get(info.name);
+                b.articles.push(a);
+                b.latestTime = Math.max(b.latestTime, a.updatedAt || a.createdAt || 0);
+              } else {
+                entries.push({ type: 'single', article: a, latestTime: a.updatedAt || a.createdAt || 0 });
+              }
+            }
+            entries.sort((x, y) => y.latestTime - x.latestTime);
+
+            const innerHtml = entries.map((ent) => {
+              if (ent.type === 'single') return renderCard(ent.article, true);
+              const chapters = sortSeriesChapters(ent.articles, seriesMap);
+              const sKey = aKey + '::' + ent.name;
+              const isExpanded = Boolean(q) || state.expandedSeries.has(sKey);
+              const readCount = chapters.filter((c) => c.isRead).length;
+              const avgPct = Math.round(
+                chapters.reduce((sum, c) => sum + (c.isRead ? 1 : (c.maxProgress || 0)), 0) / chapters.length * 100
+              );
+              const statusTxt = readCount === chapters.length ? '全部已读' : (readCount > 0 ? `已读 ${readCount}/${chapters.length}` : '未读');
+
+              return `
+                <div class="series-card ${isExpanded ? 'expanded' : ''}" data-series-key="${esc(sKey)}">
+                  <div class="series-head" data-toggle-series="${esc(sKey)}">
+                    <div class="series-head-top">
+                      <div class="series-title-left">
+                        <span class="series-icon">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>
+                        </span>
+                        <span class="series-title">${esc(ent.name)}</span>
+                      </div>
+                      <div class="series-head-right">
+                        <span class="series-count-pill">${chapters.length} 篇</span>
+                        <span class="series-chevron">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                        </span>
+                        <button class="card-more" style="margin:0 -6px 0 0;" data-series-menu-author="${esc(aKey)}" data-series-menu-name="${esc(ent.name)}" aria-label="管理系列">
+                          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>
+                        </button>
+                      </div>
+                    </div>
+                    <div class="progress-wrap" style="margin-top:0;">
+                      <div class="progress-track"><div class="progress-fill" style="width:${avgPct}%"></div></div>
+                      <div class="progress-label" style="min-width:auto;">${statusTxt}</div>
+                    </div>
+                  </div>
+                  <div class="series-children">
+                    ${chapters.map((c) => renderSeriesChild(c)).join('')}
+                  </div>
+                </div>
+              `;
+            }).join('');
+
             html += `
               <section class="author-group">
                 <div class="author-header">
@@ -1529,7 +2021,7 @@
                   <button class="author-edit-btn" data-edit-author="${esc(aKey)}">备注名</button>
                 </div>
                 <div style="display:flex;flex-direction:column;gap:10px;">
-                  ${list.map((a) => renderCard(a, true)).join('')}
+                  ${innerHtml}
                 </div>
               </section>
             `;
@@ -1606,9 +2098,11 @@
           }
           if (b.type === 'img') {
             const src = b.imgData || b.imgSrc || '';
-            if (src) {
-              html += `<div class="para-img-wrap"><img src="${esc(src)}" loading="lazy" alt="插图" /></div>`;
-            }
+            html += `<div class="para-img-wrap" data-img-pid="${esc(b.pid)}">${
+              src
+                ? `<img src="${esc(src)}" referrerpolicy="no-referrer" loading="lazy" alt="插图" data-img-pid="${esc(b.pid)}" />`
+                : `<div class="img-fallback"><div>插图未能直接加载（可能受防盗链限制）</div><div class="img-fallback-actions"><button class="img-mini-btn" data-replace-img="${esc(b.pid)}">从相册补录此图</button></div></div>`
+            }</div>`;
             continue;
           }
           const rawZh = b.zh || b.ko || '';
@@ -1625,7 +2119,24 @@
           `;
         }
 
-        document.getElementById('reader-article').innerHTML = html;
+        const articleEl = document.getElementById('reader-article');
+        articleEl.innerHTML = html;
+        articleEl.querySelectorAll('img[data-img-pid]').forEach((imgEl) => {
+          imgEl.addEventListener('error', () => {
+            const pid = imgEl.dataset.imgPid;
+            const wrap = imgEl.closest('.para-img-wrap');
+            if (!wrap) return;
+            wrap.innerHTML = `
+              <div class="img-fallback">
+                <div>原图受网站防盗链保护或已离线，无法直连显示</div>
+                <div class="img-fallback-actions">
+                  <button class="img-mini-btn" data-replace-img="${esc(pid)}">从相册离线补录</button>
+                  <button class="img-mini-btn" data-retry-img="${esc(pid)}">重试加载</button>
+                </div>
+              </div>
+            `;
+          }, { once: true });
+        });
       }
 
       function updateReaderBars() {
@@ -1661,7 +2172,79 @@
       let lastTapPid = null;
       let singleTapTimer = null;
 
+      let pendingReplaceImgPid = null;
+      const replaceImgInput = document.getElementById('replace-img-input');
+
+      function compressLocalFileToDataUrl(file) {
+        return new Promise((resolve, reject) => {
+          const objUrl = URL.createObjectURL(file);
+          const img = new Image();
+          img.onload = () => {
+            try {
+              const maxW = 1100;
+              let w = img.naturalWidth || img.width;
+              let h = img.naturalHeight || img.height;
+              if (w > maxW) {
+                h = Math.round((h * maxW) / w);
+                w = maxW;
+              }
+              const canvas = document.createElement('canvas');
+              canvas.width = w;
+              canvas.height = h;
+              const ctx = canvas.getContext('2d');
+              ctx.fillStyle = '#FFFFFF';
+              ctx.fillRect(0, 0, w, h);
+              ctx.drawImage(img, 0, 0, w, h);
+              const out = canvas.toDataURL('image/jpeg', 0.82);
+              URL.revokeObjectURL(objUrl);
+              resolve(out);
+            } catch (err) {
+              URL.revokeObjectURL(objUrl);
+              reject(err);
+            }
+          };
+          img.onerror = () => {
+            URL.revokeObjectURL(objUrl);
+            reject(new Error('img'));
+          };
+          img.src = objUrl;
+        });
+      }
+
+      replaceImgInput.addEventListener('change', async (e) => {
+        const file = e.target.files?.[0];
+        replaceImgInput.value = '';
+        if (!file || !pendingReplaceImgPid || !state.currentArticleId) return;
+        const art = state.articles.find((a) => a.id === state.currentArticleId);
+        const block = art?.blocks.find((b) => b.pid === pendingReplaceImgPid);
+        pendingReplaceImgPid = null;
+        if (!art || !block) return;
+        try {
+          block.imgData = await compressLocalFileToDataUrl(file);
+          art.updatedAt = Date.now();
+          await idbPut('articles', art);
+          renderReaderArticle(art);
+          showToast('已离线保存插图');
+        } catch {
+          showToast('图片处理失败，请重试');
+        }
+      });
+
       document.getElementById('reader-article').addEventListener('click', (e) => {
+        const repBtn = e.target.closest('[data-replace-img]');
+        if (repBtn) {
+          e.stopPropagation();
+          pendingReplaceImgPid = repBtn.dataset.replaceImg;
+          replaceImgInput.click();
+          return;
+        }
+        const retryBtn = e.target.closest('[data-retry-img]');
+        if (retryBtn) {
+          e.stopPropagation();
+          const art = state.articles.find((a) => a.id === state.currentArticleId);
+          if (art) renderReaderArticle(art);
+          return;
+        }
         // 如果点击了已高亮句子，打开高亮编辑弹窗
         const mark = e.target.closest('mark.hl');
         if (mark) {
@@ -1994,12 +2577,39 @@
       }
 
       async function handleImportRaw(rawText) {
+        let jsonPart = rawText.trim();
+        const extraOfflineImgs = new Map();
+        const sep = '<<<OFFLINE_IMGS>>>';
+        const sepIdx = jsonPart.indexOf(sep);
+        if (sepIdx >= 0) {
+          const imgSection = jsonPart.slice(sepIdx + sep.length).trim();
+          jsonPart = jsonPart.slice(0, sepIdx).trim();
+          for (const line of imgSection.split(/\r?\n/)) {
+            const cut = line.indexOf('|||');
+            if (cut > 0) {
+              const u = line.slice(0, cut).trim();
+              const b64 = line.slice(cut + 3).trim().replace(/\s+/g, '');
+              if (u && b64) {
+                extraOfflineImgs.set(u, b64.startsWith('data:') ? b64 : ('data:image/jpeg;base64,' + b64));
+              }
+            }
+          }
+        }
+
         let data;
         try {
-          data = JSON.parse(rawText.trim());
+          data = JSON.parse(jsonPart);
         } catch {
           showToast('内容格式不是有效的 Postype 提取数据');
           return;
+        }
+        if (extraOfflineImgs.size && Array.isArray(data.blocks)) {
+          for (const b of data.blocks) {
+            if (b.type === 'img' && !b.imgData && b.imgSrc && extraOfflineImgs.has(b.imgSrc)) {
+              b.imgData = extraOfflineImgs.get(b.imgSrc);
+              b.offline = true;
+            }
+          }
         }
         if (data.error) {
           showToast(data.error);
@@ -2086,16 +2696,20 @@
             }
           });
 
-          // 补齐之前可能缺失的本地图片
-          const existingImgSrcs = new Set(existing.blocks.filter((b) => b.type === 'img').map((b) => b.imgSrc));
+          // 补齐或升级之前缺失离线数据的图片
+          const existingImgsBySrc = new Map(existing.blocks.filter((b) => b.type === 'img').map((b) => [b.imgSrc, b]));
           for (const inc of data.blocks) {
-            if (inc.type === 'img' && inc.imgSrc && !existingImgSrcs.has(inc.imgSrc)) {
+            if (inc.type !== 'img') continue;
+            const prevImg = inc.imgSrc ? existingImgsBySrc.get(inc.imgSrc) : null;
+            if (prevImg) {
+              if (!prevImg.imgData && inc.imgData) prevImg.imgData = inc.imgData;
+            } else if (inc.imgSrc || inc.imgData) {
               existing.blocks.push({
                 pid: inc.pid,
                 sort: inc.sort,
                 type: 'img',
                 imgData: inc.imgData || '',
-                imgSrc: inc.imgSrc
+                imgSrc: inc.imgSrc || ''
               });
             }
           }
@@ -2442,6 +3056,12 @@
         const currentAlias = isUnknown ? '' : (state.authors[aKey]?.alias || '');
         const origLabel = [art.authorZh, art.authorKo, art.author].find((n) => !isUnknownName(n)) || art.authorHandle || '';
 
+        const allAuthArts = state.articles.filter((a) => normalizeAuthorKey(a) === aKey);
+        const sMap = computeAuthorSeriesMap(allAuthArts);
+        const curSeriesInfo = sMap.get(art.id);
+        const curSeriesVal = art.series === '__NONE__' ? '' : (art.series || curSeriesInfo?.name || '');
+        const existingSeriesNames = getAllSeriesNamesForAuthor(aKey);
+
         openModal(`
           <div class="sheet-head">
             <div class="sheet-title">管理文章</div>
@@ -2456,16 +3076,42 @@
             <label>${isUnknown ? '设置本文作者名（仅修改本文，不会影响后续导入的文章）' : '作者备注名（同作者文章同步生效，支持中韩双语搜索）'}</label>
             <input id="edit-author-alias" class="input" value="${esc(currentAlias)}" placeholder="${isUnknown ? '输入作者名，相同作者名会自动归为一组' : '例如：夜空太太（原名：' + esc(origLabel) + '）'}" />
           </div>
+          <div class="field">
+            <label>所属系列（按作者查看时自动收编；同名如 01/02 会自动识别）</label>
+            <input id="edit-art-series" class="input" value="${esc(curSeriesVal)}" placeholder="留空表示单篇不归入系列" />
+            ${existingSeriesNames.length ? `
+              <div class="chip-row">
+                ${existingSeriesNames.map((n) => `<button type="button" class="series-chip" data-fill-series="${esc(n)}">${esc(n)}</button>`).join('')}
+                ${curSeriesVal ? '<button type="button" class="series-chip" data-fill-series="">移出系列</button>' : ''}
+              </div>
+            ` : ''}
+          </div>
           <div class="btn-row" style="margin-top:14px;">
             <button class="btn-block btn-danger-soft" id="btn-del-article" style="flex:0.45;">删除文章</button>
             <button class="btn-block btn-primary" id="btn-save-art-meta" style="flex:1;">保存修改</button>
           </div>
         `);
 
+        modalRoot.querySelectorAll('[data-fill-series]').forEach((chip) => {
+          chip.addEventListener('click', () => {
+            document.getElementById('edit-art-series').value = chip.dataset.fillSeries;
+          });
+        });
+
         document.getElementById('btn-save-art-meta').addEventListener('click', async () => {
           const newTitle = document.getElementById('edit-art-title').value.trim();
           const newAuthorInput = document.getElementById('edit-author-alias').value.trim();
+          const newSeriesInput = document.getElementById('edit-art-series').value.trim();
           if (newTitle) art.title = newTitle;
+
+          if (newSeriesInput) {
+            art.series = newSeriesInput;
+          } else if (curSeriesInfo) {
+            /* 原本属于某系列（手动或自动识别）而被清空，显式标记为不归组 */
+            art.series = '__NONE__';
+          } else {
+            art.series = '';
+          }
 
           if (isUnknown) {
             if (newAuthorInput) {
@@ -2494,6 +3140,80 @@
           closeModal();
           renderShelf();
           showToast('已删除');
+        });
+      }
+
+      function openSeriesMenuModal(authorKey, seriesName) {
+        const allAuthArts = state.articles.filter((a) => normalizeAuthorKey(a) === authorKey);
+        const sMap = computeAuthorSeriesMap(allAuthArts);
+        const inSeries = allAuthArts.filter((a) => sMap.get(a.id)?.name === seriesName);
+        const others = allAuthArts.filter((a) => sMap.get(a.id)?.name !== seriesName);
+
+        openModal(`
+          <div class="sheet-head">
+            <div class="sheet-title">管理系列</div>
+            <button class="sheet-close" data-close-modal>✕</button>
+          </div>
+          <div class="field">
+            <label>系列名称（当前收编 ${inSeries.length} 篇）</label>
+            <input id="edit-series-name" class="input" value="${esc(seriesName)}" placeholder="输入系列名称" />
+          </div>
+          ${others.length ? `
+            <div class="field">
+              <label>顺手将同作者其他文章收入此系列（选填）</label>
+              <div class="pick-list">
+                ${others.map((o) => `
+                  <label class="pick-row">
+                    <input type="checkbox" data-add-to-series="${esc(o.id)}" />
+                    <span>${esc(o.title || o.titleKo || '未命名文章')}</span>
+                  </label>
+                `).join('')}
+              </div>
+            </div>
+          ` : ''}
+          <div class="btn-row" style="margin-top:12px;">
+            <button class="btn-block btn-danger-soft" id="btn-dissolve-series" style="flex:0.46;">解散为单篇</button>
+            <button class="btn-block btn-primary" id="btn-save-series" style="flex:1;">保存修改</button>
+          </div>
+        `);
+
+        document.getElementById('btn-save-series').addEventListener('click', async () => {
+          const newName = document.getElementById('edit-series-name').value.trim();
+          if (!newName) return showToast('系列名称不能为空');
+          const oldKey = authorKey + '::' + seriesName;
+          const newKey = authorKey + '::' + newName;
+          const wasExpanded = state.expandedSeries.has(oldKey);
+
+          for (const a of inSeries) {
+            a.series = newName;
+            await idbPut('articles', a);
+          }
+          const pickedIds = Array.from(modalRoot.querySelectorAll('[data-add-to-series]:checked')).map((el) => el.dataset.addToSeries);
+          for (const id of pickedIds) {
+            const target = state.articles.find((a) => a.id === id);
+            if (target) {
+              target.series = newName;
+              await idbPut('articles', target);
+            }
+          }
+          if (wasExpanded) {
+            state.expandedSeries.delete(oldKey);
+            state.expandedSeries.add(newKey);
+          }
+          closeModal();
+          renderShelf();
+          showToast(pickedIds.length ? `已更新系列并收入 ${pickedIds.length} 篇` : '已更新系列名称');
+        });
+
+        document.getElementById('btn-dissolve-series').addEventListener('click', async () => {
+          for (const a of inSeries) {
+            a.series = '__NONE__';
+            await idbPut('articles', a);
+          }
+          state.expandedSeries.delete(authorKey + '::' + seriesName);
+          closeModal();
+          renderShelf();
+          showToast('已解散为单篇显示');
         });
       }
 
@@ -2751,8 +3471,10 @@
         renderShelf();
       });
 
-      document.getElementById('btn-toggle-group').addEventListener('click', () => {
+      document.getElementById('btn-toggle-group').addEventListener('click', async () => {
         state.groupByAuthor = !state.groupByAuthor;
+        state.settings.groupByAuthor = state.groupByAuthor;
+        await persistSettings();
         renderShelf();
       });
 
@@ -2781,6 +3503,25 @@
         if (editAuthorBtn) {
           e.stopPropagation();
           openAuthorAliasModal(editAuthorBtn.dataset.editAuthor);
+          return;
+        }
+        const seriesMenuBtn = e.target.closest('[data-series-menu-name]');
+        if (seriesMenuBtn) {
+          e.stopPropagation();
+          openSeriesMenuModal(seriesMenuBtn.dataset.seriesMenuAuthor, seriesMenuBtn.dataset.seriesMenuName);
+          return;
+        }
+        const toggleSeriesEl = e.target.closest('[data-toggle-series]');
+        if (toggleSeriesEl) {
+          const sKey = toggleSeriesEl.dataset.toggleSeries;
+          const cardEl = toggleSeriesEl.closest('.series-card');
+          if (state.expandedSeries.has(sKey)) {
+            state.expandedSeries.delete(sKey);
+            cardEl?.classList.remove('expanded');
+          } else {
+            state.expandedSeries.add(sKey);
+            cardEl?.classList.add('expanded');
+          }
           return;
         }
         const moreBtn = e.target.closest('[data-menu-id]');
@@ -2845,7 +3586,10 @@
           }
         }
         const prefs = settingsList.find((s) => s.key === 'prefs')?.value;
-        if (prefs) state.settings = { ...state.settings, ...prefs };
+        if (prefs) {
+          state.settings = { ...state.settings, ...prefs };
+          state.groupByAuthor = Boolean(state.settings.groupByAuthor);
+        }
 
         applySettings();
         renderShelf();

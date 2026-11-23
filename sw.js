@@ -1,4 +1,4 @@
-const CACHE_NAME = 'postype-local-reader-v2';
+const CACHE_NAME = 'postype-local-reader-v4';
 const ASSETS = [
   './',
   './index.html',
